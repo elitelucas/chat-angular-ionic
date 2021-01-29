@@ -1,0 +1,39 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Chat Room</ion-title>
+    <ion-button style="float: right;" size="small" color="danger" (click)="Exit()">Exit</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="container">
+
+
+    <div class="msg-detail">
+      <div class="msg-content" #chatText>
+        <!-- <span class="triangle"></span> -->
+        
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer no-border>
+  <div *ngIf="othersTyping" style="margin-left:2%;">
+    <ion-spinner name="dots"></ion-spinner>
+  </div>
+  <div class="input-wrap">
+    <textarea #messageInput placeholder="Enter your message!" 
+    [(ngModel)]="chatMessage"
+    (keypress)="Typing()"
+    (keyup)="Untyping()"
+    (keyup.enter)="sendClientMessage()">
+    </textarea>
+    <button ion-button clear icon-only item-right (click)="sendClientMessage()">
+      <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+    </button>
+  </div>
+</ion-footer>
